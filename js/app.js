@@ -1,13 +1,18 @@
 // Enemies our player must avoid
-var Enemy = function(xPosition, yPosition) {
+var Enemy = function(xPos, yPos) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.xPosition = xPosition;
-    this.yPosition = yPosition;
+    this.x = xPos; // set initial poistion
+    this.y = yPos;
+    this.move = 101; // moves 101px right
+    this.speed = 200; // initial speed
+    this.restartPos = -150; // restarts position
+    
+  
 };
 
 // Update the enemy's position, required method for game
@@ -16,8 +21,15 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
- 
-     
+     this.x += this.speed * dt;
+   
+    // if enemy reaches 500px at the end of the board
+      if (this.x > 500) {
+        this.x = this.restartPos; 
+        // sets random speed after first render
+        this.speed = 150 + Math.floor(Math.random() * this.speed);
+         
+    } 
 };
 
 // Draw the enemy on the screen, required method for game
@@ -30,19 +42,26 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 class User {
     constructor() {
-        this.startx = 202;
-        this.starty = 404;
-        this.x = this.startx;
-        this.y = this.starty;
-        this.sprite = 'images/char-boy.png';
+        this.startX = 202;
+        this.startY = 395;
+        this.x = this.startX; // starting positions
+        this.y = this.startY;
+        this.sprite = 'images/char-princess-girl.png';
+    }
+    
+    reset() {
+        this.x = this.startX;
+        this.y = this.startY;
     }
 }
-//Draws User on the canvas
+// draws User on the canvas. You can place this inside User class
+// can put this in user class
 User.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
 
 // handles users key moves - jumps every 101px x 83px
+// can put this inside user class
 User.prototype.handleInput = function(moves) {
     // moves left 101px and prevents going off the board
      if (moves == 'left' && this.x > 0) {
@@ -50,30 +69,31 @@ User.prototype.handleInput = function(moves) {
      }   
     // moves up 83px 
     if (moves == 'up') {
-        this.y -= 83;
+        this.y -= 85;
     }
     // moves right 101px and prevents going off the board
     if (moves == 'right' && this.x < 404) {
         this.x += 101;
     }
     // moves down 83px and prevents going off the board
-    if (moves == 'down' && this.y < 404) {
-        this.y += 83;
+    if (moves == 'down' && this.y < 395) {
+        this.y += 85;
     }
     // prevent User from going into the water/blue blocks
-    if (this.y < 41) {
-        this.x = this.startx;
-        this.y = this.starty;
+    // resets position
+    if (this.y < 41.5) {
+        this.x = this.startX;
+        this.y = this.startY;
+        // time and score ++ 
     }
 }
 // updates position
-User.prototype.update = function(x, y) {
-            this.x = x;
-            this.y = y;
+// can put this insude user class
+User.prototype.update = function() {
             //check if user x y position collides with each enemy's 
             for (let enemy of allEnemies) {
-                if (this.x && this.y === enemy.xPosition && enemy.yPosition) {
-                    // reset
+                if (this.y == enemy.y) {
+                   console.log("hi")
                 }
             }
         }
@@ -82,11 +102,15 @@ User.prototype.update = function(x, y) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-const player = new User(202, 405);
-const enemies = new Enemy();
+const player = new User();
+const enemy1 = new Enemy(101, 55);
+const enemy2 = new Enemy(99, 55);
+const enemy3 = new Enemy(85, 140);
+const enemy4 = new Enemy(75, 140);
+const enemy5 = new Enemy(50, 225);
 const allEnemies = [];
 // push new enemies into allEnemies
-allEnemies.push(enemies);
+allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
