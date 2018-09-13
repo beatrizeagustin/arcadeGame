@@ -82,8 +82,11 @@ User.prototype.handleInput = function(moves) {
     // prevent User from going into the water/blue blocks
     // resets position
     if (this.y < 41.5) {
-        this.x = this.startX;
-        this.y = this.startY;
+        setTimeout(() => {
+            this.x = this.startX;
+            this.y = this.startY; 
+        }, 200)
+       
         // time and score ++ 
     }
 }
@@ -91,9 +94,10 @@ User.prototype.handleInput = function(moves) {
 // can put this insude user class
 User.prototype.update = function() {
             //check if user x y position collides with each enemy's 
+            
             for (let enemy of allEnemies) {
-                if (this.y == enemy.y) {
-                   console.log("hi")
+                if (this.y == enemy.y && this.x < enemy.x + 80 && enemy.x < this.x + 80) {
+                   this.reset()
                 }
             }
         }
