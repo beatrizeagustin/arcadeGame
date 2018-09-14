@@ -52,6 +52,24 @@ class User {
     reset() {
         this.x = this.startX;
         this.y = this.startY;
+       
+        // removes star animation css property as a reset
+        setTimeout(() => { 
+            document.getElementById("stars").style.animation = "";
+        }, 400)
+        
+    }
+    
+    score() {
+        if (this.y < 41.5) {
+        let score = 0;
+            score++
+            document.getElementById("score").innerHTML = score;
+             document.getElementById("stars").style.animation = "win 0.5s linear";
+            setTimeout(() => {
+            this.reset()
+        }, 200) 
+        }
     }
 }
 // draws User on the canvas. You can place this inside User class
@@ -80,27 +98,31 @@ User.prototype.handleInput = function(moves) {
         this.y += 85;
     }
     // prevent User from going into the water/blue blocks
-    // resets position
-    if (this.y < 41.5) {
-        setTimeout(() => {
-            this.x = this.startX;
-            this.y = this.startY; 
-        }, 200)
-       
+    // resets
+  
+        // resets and adds star animation
+    this.score() 
+    
+      
         // time and score ++ 
-    }
+   
 }
 // updates position
 // can put this insude user class
 User.prototype.update = function() {
-            //check if user x y position collides with each enemy's 
-            
-            for (let enemy of allEnemies) {
-                if (this.y == enemy.y && this.x < enemy.x + 80 && enemy.x < this.x + 80) {
-                   this.reset()
-                }
-            }
+    //check if user x y position collides with each enemy's 
+    for (let enemy of allEnemies) {
+        // if User and Enemy's y coordinates match
+        // if '' x plus 80px 
+        if (this.y == enemy.y && this.x < enemy.x + 80 && enemy.x < this.x + 80) {
+            // resets
+            setTimeout(() => {
+                this.reset()
+                score - 1
+            }, 200) 
         }
+    }
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
