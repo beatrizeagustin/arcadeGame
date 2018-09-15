@@ -1,5 +1,5 @@
 How to play:
-- Download and open index.html in any browser.
+- Download and open index.html to any browser.
 - Use right, left, up and down arrows to move.
 - Reset score button will appear once you win 1 point by reaching the blue block without being hit by the beetles.
 
