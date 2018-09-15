@@ -58,9 +58,9 @@ class User {
     
     score() {
         // plays win sound
-        winSound.play()
+        winSound.play();
         // adds 1 point and animation  
-        scores++
+        scores++;
         document.getElementById("score").innerHTML = scores;
         document.getElementById("stars").style.animation = "win 0.5s linear";
         
@@ -71,7 +71,7 @@ class User {
             btn.appendChild(text);                              
             document.getElementById('reset_button').appendChild(btn); 
             btn.onclick = function() {
-                scores = 0
+                scores = 0;
                 document.getElementById("score").innerHTML = scores;
                 document.getElementById('reset_button').innerHTML = '';
             }
@@ -88,8 +88,9 @@ User.prototype.render = function() {
 // handles users key moves - jumps every 101px x 83px
 // can put this inside user class
 User.prototype.handleInput = function(moves) {
-    if (moves == 'left' || moves == 'up' || moves == 'right' || moves == 'down') {
-        jumpSound.play()
+    // plays jump sound only with these keys
+   if (moves == 'left' || moves == 'up' || moves == 'right' || moves == 'down') {
+        jumpSound.play();
     }
     // moves left 101px and prevents going off the board
      if (moves == 'left' && this.x > 0) {
@@ -110,7 +111,7 @@ User.prototype.handleInput = function(moves) {
     // prevent User from going into/beyond the blue blocks
     // resets and adds star score animation
     if (this.y < 41.5) {
-        this.score() 
+        this.score(); 
         setTimeout(() => {
             this.reset();
         }, 100) 
@@ -126,9 +127,9 @@ User.prototype.update = function() {
         if (this.y == enemy.y && this.x < enemy.x + 80 && enemy.x < this.x + 80) {
             // resets
             setTimeout(() => {
-                this.reset()
+                this.reset();
                 // plays lose sound
-                loseSound.play()
+                loseSound.play();
                 // sets lose animation
                 document.getElementById("stars").style.animation = "lose 0.5s linear";
             }, 100) 
@@ -166,10 +167,10 @@ const enemy5 = new Enemy(50, 225);
 const allEnemies = [];
 // push new enemies into allEnemies
 allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
-// sounds from freesounds.com
-let jumpSound = new sound('sounds/167045__drminky__slime-jump.wav')
-let winSound = new sound('sounds/350875__cabled-mess__coin-c-07.wav');
-let loseSound = new sound('sounds/233343__otisjames__squitch.wav');
+// instantiate sounds - from freesounds.com
+const jumpSound = new sound('sounds/167045__drminky__slime-jump.wav');
+const winSound = new sound('sounds/350875__cabled-mess__coin-c-07.wav');
+const loseSound = new sound('sounds/233343__otisjames__squitch.wav');
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -179,6 +180,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
+     
 
     player.handleInput(allowedKeys[e.keyCode]);
 });

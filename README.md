@@ -1,3 +1,15 @@
+How to play:
+
+-Use right, left, up and down arrows to move.
+-Reset score button will appear once you win 1 point by reaching the blue block without being hit by the beetles.
+
+Built With:
+-Vanilla Javascript
+-Fonts from FontAwesome/Google Fonts 
+    fonts: Galindo and Press Start 2P
+-Sprites/assets provided by Udacity
+-Sounds from freesounds.com
+
 frontend-nanodegree-arcade-game
 ===============================
 
