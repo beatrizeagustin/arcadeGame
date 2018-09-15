@@ -6,9 +6,9 @@ How to play:
 Built With:
 - Vanilla Javascript
 - Fonts from FontAwesome/Google Fonts 
-    fonts: Galindo and Press Start 2P
+  - fonts: Galindo and Press Start 2P
 - Sprites/assets provided by Udacity
-- Sounds from freesounds.com
+- Sounds from [freesounds.com]
 
 frontend-nanodegree-arcade-game
 ===============================
