@@ -1,4 +1,6 @@
-![arcade game](https://github.com/beatrizeagustin/arcadeGame/blob/master/images/Screenshot.png)
+<p align="center">
+  <img src="https://github.com/beatrizeagustin/arcadeGame/blob/master/images/Screenshot.png" width="350" alt="arcade game"> 
+</p>
 How to play:
 - Download and open index.html to any browser.
 - Use right, left, up and down arrows to move.
