@@ -8,7 +8,6 @@ var Enemy = function(xPos, yPos) {
     this.sprite = 'images/enemy-bug.png';
     this.x = xPos; // set initial poistion
     this.y = yPos;
-    this.move = 101; // moves 101px right
     this.speed = 200; // initial speed
     this.restartPos = -150; // restarts position 
 };
@@ -21,7 +20,7 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     this.x += this.speed * dt;
    
-    // if enemy reaches 500px at the end of the board
+    // resets position if enemy reaches 500px at the end of the board
     if (this.x > 500) {
         this.x = this.restartPos; 
         // sets random speed after first render
@@ -118,7 +117,7 @@ User.prototype.handleInput = function(moves) {
     }
 }
 // updates position
-// can put this insude user class
+// can put this inside user class
 User.prototype.update = function() {
     //check if user x y position collides with each enemy's 
     for (let enemy of allEnemies) {
