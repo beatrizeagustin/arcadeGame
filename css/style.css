@@ -6,14 +6,41 @@ body {
     font-family: 'Galindo', cursive;
 }
 
+.score {
+    width: 505px;
+    margin: 0 auto;
+    text-align: right;
+    position: relative;
+    top: 45px
+}
+
 .score i {
     color: orange;
-    font-size: 24px;
+    font-size: 1.5em;
+}
+
+span {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+}
+
+button, #reset_button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: transparent;
+    border: none;
+    cursor: pointer
 }
 
 @keyframes win {
-    0% {transform: scale(1.5)}
+    0% {transform: scale(2); opacity: 0}
     50% {transform: scale(1)}
     75% {transform: scale(1.2)}
-    100% {transform: scale(1)}
+    100% {transform: scale(1); opacity: 1}
+}
+
+@keyframes lose {
+    0% {color: red; transform: rotate(-20deg)}
+    25% {transform: rotate(20deg)}
+    75% {transform: rotate(-10deg)}
+    100% {transform: rotate(10deg)}
 }
