@@ -38,9 +38,9 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 class User {
     constructor() {
-        this.startX = 202;
+        this.startX = 202; // starting positions
         this.startY = 395;
-        this.x = this.startX; // starting positions
+        this.x = this.startX; // pass into new variables so there are no conflicts
         this.y = this.startY;
         this.sprite = 'images/char-princess-girl.png';
     }
@@ -70,6 +70,7 @@ class User {
             btn.appendChild(text);                              
             document.getElementById('reset_button').appendChild(btn); 
             btn.onclick = function() {
+                // resets score and button
                 scores = 0;
                 document.getElementById("score").innerHTML = scores;
                 document.getElementById('reset_button').innerHTML = '';
@@ -136,7 +137,7 @@ User.prototype.update = function() {
     }
 }
 
-// sound constructor from w3cSchools
+// sound constructor from https://www.w3schools.com/graphics/game_sound.asp
 class sound {
     constructor(src) {
         this.sound = document.createElement("audio");
@@ -147,9 +148,6 @@ class sound {
         document.body.appendChild(this.sound);
         this.play = function(){
             this.sound.play();
-        }
-        this.stop = function(){
-            this.sound.pause();
         } 
     }
 }
